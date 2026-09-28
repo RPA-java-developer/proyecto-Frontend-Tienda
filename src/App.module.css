@@ -1,0 +1,8 @@
+/* Contenedor centrado: en pantallas grandes el contenido no se estira sin límite. */
+.app {
+  width: 100%;
+  max-width: 1080px;
+  min-height: 100%;
+  margin: 0 auto;
+  background: var(--color-bg);
+}

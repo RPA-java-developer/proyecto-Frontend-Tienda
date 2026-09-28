@@ -1,0 +1,53 @@
+.selector {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.etiqueta {
+  font-weight: 600;
+}
+
+.controles {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.boton {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  font-size: 24px;
+  line-height: 1;
+  color: var(--color-text);
+}
+
+.boton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.entrada {
+  width: 88px;
+  height: 48px;
+  text-align: center;
+  font-size: 18px; /* >=16px: evita el auto-zoom de iOS al enfocar */
+  font-weight: 600;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.entrada:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+.ayuda {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}

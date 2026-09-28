@@ -1,0 +1,122 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-5) var(--space-4);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  text-align: center;
+}
+
+.exito {
+  border-color: var(--color-success);
+}
+.error {
+  border-color: var(--color-danger);
+}
+.pendiente {
+  border-color: var(--color-warning);
+}
+
+.icono {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+}
+.exito .icono {
+  background: var(--color-success);
+}
+.error .icono {
+  background: var(--color-danger);
+}
+
+.spinner {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 5px solid var(--color-border);
+  border-top-color: var(--color-warning);
+  animation: girar 0.9s linear infinite;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.titulo {
+  margin: 0;
+  font-size: var(--font-size-xl);
+}
+
+.mensaje {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+.detalle {
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  text-align: left;
+}
+
+.detalle > div {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-2) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.detalle dt {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.detalle dd {
+  margin: 0;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.codigo {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: var(--font-size-sm);
+}
+
+.acciones {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.primario,
+.secundario {
+  min-height: 48px;
+  border-radius: var(--radius);
+  font-weight: 600;
+}
+
+.primario {
+  border: none;
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.secundario {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+}

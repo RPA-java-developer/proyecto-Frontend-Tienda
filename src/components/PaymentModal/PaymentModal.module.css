@@ -1,0 +1,361 @@
+/* ===== Contenedor: bottom-sheet en móvil, diálogo centrado desde 600px ===== */
+.fondo {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(17, 24, 39, 0.55);
+}
+
+.hoja {
+  width: 100%;
+  max-width: 480px;
+  max-height: 92vh;
+  max-height: 92dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-surface);
+  border-radius: 20px 20px 0 0;
+  outline: none;
+  animation: subir 0.22s ease-out;
+}
+
+@media (min-width: 600px) {
+  .fondo {
+    align-items: center;
+    padding: var(--space-4);
+  }
+  .hoja {
+    border-radius: 20px;
+    max-height: min(88dvh, 720px);
+  }
+}
+
+@keyframes subir {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.titulo {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+}
+
+.cerrar {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  font-size: 18px;
+  color: var(--color-text-muted);
+}
+
+.cerrar:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* ===== Indicador de pasos ===== */
+.etapas {
+  display: flex;
+  gap: var(--space-2);
+  margin: 0;
+  padding: var(--space-3) var(--space-4) 0;
+  list-style: none;
+}
+
+.etapa {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  padding-bottom: var(--space-2);
+  border-bottom: 3px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.etapaNumero {
+  flex: 0 0 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-border);
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.etapaNombre {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.actual {
+  border-bottom-color: var(--color-primary);
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.actual .etapaNumero {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.hecha {
+  border-bottom-color: var(--color-success);
+}
+
+.hecha .etapaNumero {
+  background: var(--color-success);
+  color: #fff;
+}
+
+/* ===== Estructura de cada paso: cuerpo con scroll + pie siempre visible ===== */
+.paso {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.cuerpo {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.pie {
+  display: flex;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4) calc(var(--space-3) + var(--safe-bottom));
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.botonPrimario,
+.botonSecundario {
+  min-height: 48px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: var(--font-size-base);
+}
+
+.botonPrimario {
+  flex: 1;
+  border: none;
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.botonPrimario:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.botonSecundario {
+  padding: 0 var(--space-4);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+/* ===== Campos del formulario (paso 1) ===== */
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+  flex: 1;
+}
+
+.campo label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.campo input,
+.campo select {
+  width: 100%;
+  min-width: 0;
+  height: 48px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 16px; /* >=16px: evita el auto-zoom de iOS al enfocar */
+}
+
+.campo input:focus,
+.campo select:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+.campo input[aria-invalid='true'] {
+  border-color: var(--color-danger);
+}
+
+.fila {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.campoAncho {
+  flex: 1.6;
+}
+
+.error {
+  margin: 0;
+  color: var(--color-danger);
+  font-size: var(--font-size-sm);
+}
+
+.terminos {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
+}
+
+.terminos input {
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  margin: 0;
+}
+
+.pruebas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border: 1px dashed var(--color-warning);
+  border-radius: 10px;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.pruebas button {
+  min-height: 36px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+}
+
+/* ===== Resumen (paso 2) ===== */
+.resumen {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.linea {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.linea dt {
+  color: var(--color-text-muted);
+}
+
+.linea dd {
+  margin: 0;
+  font-weight: 600;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.lineaTotal {
+  border-bottom: none;
+  padding-top: var(--space-3);
+  font-size: var(--font-size-lg);
+}
+
+.lineaTotal dt {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.lineaTotal dd {
+  color: var(--color-primary);
+  font-size: var(--font-size-xl);
+}
+
+.nota {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+/* ===== Procesando (paso 3) ===== */
+.procesando {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-6) var(--space-4);
+  text-align: center;
+}
+
+.spinner {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 5px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  animation: girar 0.9s linear infinite;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.procesandoTitulo {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+}

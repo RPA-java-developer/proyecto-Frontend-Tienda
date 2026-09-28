@@ -1,0 +1,87 @@
+/* Mobile-first: tarjeta en fila (imagen + info). Cabe en 320px sin desbordar. */
+.tarjeta {
+  display: flex;
+  gap: var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  min-width: 0;
+}
+
+.imagen {
+  flex: 0 0 72px;
+  width: 72px;
+  height: 72px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.info {
+  flex: 1;
+  min-width: 0; /* permite recortar el texto en vez de desbordar */
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nombre {
+  margin: 0;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.descripcion {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.pie {
+  display: flex;
+  flex-wrap: wrap; /* en pantallas muy angostas el botón baja a otra línea */
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.precioYStock {
+  display: flex;
+  flex-direction: column;
+}
+
+.precio {
+  font-weight: 700;
+}
+
+.agotado {
+  font-size: var(--font-size-sm);
+  color: var(--color-danger);
+}
+
+.boton {
+  min-height: 44px;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--color-primary);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.boton:active {
+  background: var(--color-primary);
+  color: #fff;
+}

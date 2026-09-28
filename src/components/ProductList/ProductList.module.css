@@ -1,0 +1,19 @@
+/* Mobile-first: 1 columna en móvil; las media queries min-width solo AGREGAN columnas. */
+.lista {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  padding: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .lista {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1000px) {
+  .lista {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
