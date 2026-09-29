@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { Producto } from '../../types/api';
 import { formatearCentavos } from '../../services/format';
 import styles from './ProductCard.module.css';
@@ -7,13 +8,33 @@ interface ProductCardProps {
   onVerDetalles: (producto: Producto) => void;
 }
 
+// Placeholder mientras el backend no envía imagenUrl por producto.
+// public/images/picture.png se sirve en la raíz como /images/picture.png (así funciona Vite).
+//const IMAGEN_POR_DEFECTO = '/images/picture.png';
+const IMAGEN_POR_DEFECTO = '/images/';
+
 export function ProductCard({ producto, onVerDetalles }: ProductCardProps) {
   const agotado = producto.stock <= 0;
+
+  const [fallaImagen, setFallaImagen] = useState(false);
+  const rutaImagen = producto.imagenUrl ?? IMAGEN_POR_DEFECTO;
+  const mostrarImagen = !fallaImagen;
 
   return (
     <article className={styles.tarjeta}>
       <div className={styles.imagen} aria-hidden="true">
-        {producto.nombre.charAt(0).toUpperCase()}
+        {mostrarImagen ? (
+          <img
+            src={rutaImagen + producto.nombre.split(" ")[0] + ".png"}
+            alt=""
+            className={styles.imagenFoto}
+            loading="lazy"
+            onError={() => setFallaImagen(true)} // archivo faltante/404 -> cae a la inicial
+          />
+        ) : (
+          producto.nombre.charAt(0).toUpperCase()      
+        )
+        }
       </div>
 
       <div className={styles.info}>

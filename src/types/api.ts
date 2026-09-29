@@ -4,6 +4,7 @@ export interface Producto {
   descripcion: string;
   stock: number;
   precioEnCentavos: number;
+  imagenUrl?: string;
 }
 
 /** Desglose calculado por el BACKEND (fuente de verdad). El frontend solo lo muestra. */

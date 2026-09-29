@@ -21,6 +21,13 @@
   justify-content: center;
   font-size: 28px;
   font-weight: 700;
+  overflow: hidden; /* nuevo: recorta la foto a las esquinas redondeadas */
+}
+
+.imagenFoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .info {
