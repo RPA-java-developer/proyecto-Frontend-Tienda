@@ -10,7 +10,6 @@ interface ProductCardProps {
 
 // Placeholder mientras el backend no envía imagenUrl por producto.
 // public/images/picture.png se sirve en la raíz como /images/picture.png (así funciona Vite).
-//const IMAGEN_POR_DEFECTO = '/images/picture.png';
 const IMAGEN_POR_DEFECTO = '/images/';
 
 export function ProductCard({ producto, onVerDetalles }: ProductCardProps) {
